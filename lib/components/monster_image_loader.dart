@@ -1,7 +1,7 @@
 // MonsterImageLoader.dart
 
 import 'package:flutter/material.dart';
-import 'package:mh_app/api/getMonsterImage.dart';
+import 'package:mh_app/api/get_monster_image.dart';
 
 class MonsterImageLoader extends StatelessWidget {
   final String monsterName;

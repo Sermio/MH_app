@@ -1,5 +1,3 @@
-// monster_attributes.dart
-
 import 'package:flutter/material.dart';
 import 'package:mh_app/data/monster.dart';
 
