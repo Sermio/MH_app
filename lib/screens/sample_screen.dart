@@ -14,6 +14,7 @@ class SampleScreen extends StatelessWidget {
         key: _scaffoldKey,
         appBar: AppBar(
           // title: const Text("Monsters"),
+          backgroundColor: Colors.black,
           leading: IconButton(
             icon: const Icon(Icons.menu),
             onPressed: () {
