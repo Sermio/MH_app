@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mh_app/data/monster.dart';
+import 'package:mh_app/utils/monster_atributes.dart';
 
 class IconsList extends StatelessWidget {
   const IconsList(this.elementalWeaknesses, this.ailmentWeaknesses,
@@ -7,52 +8,6 @@ class IconsList extends StatelessWidget {
 
   final List<Weakness> elementalWeaknesses;
   final List<Weakness> ailmentWeaknesses;
-
-  IconData? _getIconForElement(String element) {
-    switch (element) {
-      case 'fire':
-        return Icons.fireplace_outlined;
-      case 'water':
-        return Icons.water_drop;
-      case 'thunder':
-        return Icons.flash_on;
-      case 'ice':
-        return Icons.ac_unit;
-      case 'dragon':
-        return Icons.local_pizza;
-      default:
-        return null; // Ícono por defecto
-    }
-  }
-
-  IconData? _getIconForAilment(String ailment) {
-    switch (ailment) {
-      case 'poison':
-        return Icons.bubble_chart_sharp;
-      case 'sleep':
-        return Icons.hotel;
-      case 'paralysis':
-        return Icons.assist_walker;
-      case 'blast':
-        return Icons.drive_file_rename_outline_sharp;
-      case 'stun':
-        return Icons.airline_seat_legroom_extra_sharp;
-      default:
-        return null; // Ícono por defecto
-    }
-  }
-
-  Color _getColorForStars(int stars) {
-    if (stars == 1) {
-      return Colors.blue; // Color para 1 estrella
-    } else if (stars == 2) {
-      return Colors.orange; // Color para 2 estrellas
-    } else if (stars >= 3) {
-      return Colors.red; // Color para 3 estrellas o más
-    } else {
-      return Colors.grey; // Color por defecto si no hay coincidencias
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +33,9 @@ class IconsList extends StatelessWidget {
               return Column(
                 children: [
                   Icon(
-                    _getIconForElement(elementalWeakness.element),
+                    getIconForElement(elementalWeakness.element),
                     size: 40.0,
-                    color: _getColorForStars(elementalWeakness.stars),
+                    color: getColorForStars(elementalWeakness.stars),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
@@ -113,9 +68,9 @@ class IconsList extends StatelessWidget {
               return Column(
                 children: [
                   Icon(
-                    _getIconForAilment(ailmentWeakness.element),
+                    getIconForAilment(ailmentWeakness.element),
                     size: 40.0,
-                    color: _getColorForStars(ailmentWeakness.stars),
+                    color: getColorForStars(ailmentWeakness.stars),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,

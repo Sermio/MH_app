@@ -16,19 +16,42 @@ class Ccard extends StatelessWidget {
       },
       child: Card(
         child: ListTile(
-          leading: const Icon(Icons.pets_outlined),
+          // leading: const Icon(Icons.pets_outlined),
           // trailing: IconButton(
           //   icon: const Icon(Icons.add_shopping_cart_sharp),
           //   onPressed: () {},
           // ),
-          title: Text(monster.name),
+          title: Text(
+            monster.name,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(monster.description),
-              const SizedBox(height: 5),
-              Text("Type: ${monster.type}"),
-              Text("Species: ${monster.species}"),
+              const SizedBox(height: 15),
+              Row(
+                children: [
+                  const Text(
+                    "Type: ",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    monster.type,
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  const Text(
+                    "Species: ",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    monster.species,
+                  )
+                ],
+              ),
             ],
           ),
         ),

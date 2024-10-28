@@ -23,7 +23,7 @@ class _CardListState extends State<CardList> {
   }
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -41,7 +41,7 @@ class _CardListState extends State<CardList> {
                   });
                 },
                 decoration: InputDecoration(
-                  labelText: 'Filter by name',
+                  labelText: 'Filter by name, type, or species',
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16.0),
@@ -62,9 +62,16 @@ class _CardListState extends State<CardList> {
                     return const Center(child: Text('No monsters found'));
                   } else {
                     final monsterList = snapshot.data!
-                        .where((monster) => monster.name
-                            .toLowerCase()
-                            .contains(filterText.toLowerCase()))
+                        .where((monster) =>
+                            monster.name
+                                .toLowerCase()
+                                .contains(filterText.toLowerCase()) ||
+                            monster.type
+                                .toLowerCase()
+                                .contains(filterText.toLowerCase()) ||
+                            monster.species
+                                .toLowerCase()
+                                .contains(filterText.toLowerCase()))
                         .toList();
 
                     return ListView.builder(
