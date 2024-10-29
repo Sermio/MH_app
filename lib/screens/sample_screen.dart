@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mh_app/data/monster.dart';
 import 'package:mh_app/components/c_drawer.dart';
 import 'package:mh_app/components/c_appbar.dart';
 
 class SampleScreen extends StatelessWidget {
-  late Future<List<Monster>> futureMonsters;
+  SampleScreen({super.key});
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 

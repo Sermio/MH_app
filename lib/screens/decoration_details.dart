@@ -19,7 +19,7 @@ class DecorationDetails extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
+              const Center(
                 child: Text(
                   "Decoration Skills",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -34,7 +34,7 @@ class DecorationDetails extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Contenedor para la imagen
-                          Container(
+                          SizedBox(
                             width: 50, // Ajusta el ancho de la imagen
                             height: 50, // Ajusta la altura de la imagen
                             child: UrlImageLoader(
@@ -51,23 +51,23 @@ class DecorationDetails extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 // Contenedor para el nombre de la habilidad
-                                Container(
-                                  // width:
-                                  //     100, // Ajusta el ancho fijo según sea necesario
-                                  child: Text(
-                                    "${skill.skillName} + ${skill.level}",
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    overflow: TextOverflow
-                                        .ellipsis, // Evita desbordamientos
+
+                                // width:
+                                //     100, // Ajusta el ancho fijo según sea necesario
+                                Text(
+                                  "${skill.skillName} + ${skill.level}",
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
                                   ),
+                                  overflow: TextOverflow
+                                      .ellipsis, // Evita desbordamientos
                                 ),
+
                                 // Descripción de la habilidad
                                 Text(
                                   skill.description,
-                                  style: TextStyle(fontSize: 16),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ],
                             ),
@@ -78,7 +78,7 @@ class DecorationDetails extends StatelessWidget {
                   }).toList(),
                 ),
               ] else ...[
-                Text("No skills available"),
+                const Text("No skills available"),
               ],
               const SizedBox(height: 20), // Espacio antes del botón
               Center(

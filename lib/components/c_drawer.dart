@@ -11,6 +11,7 @@ class Cdrawer extends StatefulWidget {
   const Cdrawer({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _CdrawerState createState() => _CdrawerState();
 }
 
@@ -20,17 +21,12 @@ class _CdrawerState extends State<Cdrawer> {
       _decorationData; // Almacenaremos la llamada aquí
 
   Future<List<Monster>> fetchMonsters() async {
-    if (_monsterData == null) {
-      _monsterData = MonsterApi.fetchMonsters(); // Solo se ejecuta si es null
-    }
+    _monsterData ??= MonsterApi.fetchMonsters();
     return _monsterData!;
   }
 
   Future<List<ItemDecoration>> fetchDecorations() async {
-    if (_decorationData == null) {
-      _decorationData =
-          DecorationApi.fetchDecorations(); // Cambia esto por tu función real
-    }
+    _decorationData ??= DecorationApi.fetchDecorations();
     return _decorationData!;
   }
 

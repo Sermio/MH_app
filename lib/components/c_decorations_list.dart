@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mh_app/data/decoration.dart';
 import 'package:mh_app/components/c_card.dart';
-import 'package:mh_app/utils/utils.dart';
 import 'package:mh_app/api/get_items_images.dart';
 import 'package:mh_app/components/url_image_loader.dart';
 
@@ -79,7 +78,7 @@ class CdecorationList extends StatelessWidget {
   Column _decorationLeading(List<Skill> skills) {
     return Column(
       children: skills.map((skill) {
-        return Container(
+        return SizedBox(
           width: 28, // Ajusta el ancho de la imagen
           height: 28, // Ajusta la altura de la imagen
           child: UrlImageLoader(

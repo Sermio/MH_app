@@ -19,10 +19,10 @@ class UrlImageLoader extends StatelessWidget {
       future: loadImageUrlFunction(itemName), // Llamar a la función pasada
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container(
+          return const SizedBox(
             width: double.infinity,
             height: 200,
-            child: const Center(child: CircularProgressIndicator()),
+            child: Center(child: CircularProgressIndicator()),
           ); // Cargando...
         } else if (snapshot.hasError || !snapshot.hasData) {
           return Container(
