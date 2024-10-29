@@ -5,26 +5,28 @@ import 'package:mh_app/screens/monster_details.dart';
 import 'package:mh_app/screens/decoration_details.dart';
 
 class Ccard extends StatelessWidget {
-  final dynamic cardDataType; // Cambiado a dynamic
+  final dynamic cardData; // Cambiado a dynamic
   final String cardTitle;
-  final String cardDescription;
+  final Widget? cardBody; // Cambiado a Widget?
   String? cardSubtitle1 = "Subtitle1";
   String? cardSubtitle2 = "Subtitle2";
   String? cardSubtitle1Label = "cardSubtitle1Label";
   String? cardSubtitle2Label = "cardSubtitle2Label";
-  final Icon? leading;
+  final Widget? leading;
+  final Widget? trailing;
   final Color? cardTitleColor;
 
   Ccard({
     Key? key,
-    required this.cardDataType, // Usar cardDataType
+    required this.cardData, // Usar cardData
     required this.cardTitle,
-    required this.cardDescription,
+    this.cardBody, // Hacer que sea opcional
     this.cardSubtitle1,
     this.cardSubtitle2,
     this.cardSubtitle1Label,
     this.cardSubtitle2Label,
     this.leading,
+    this.trailing,
     this.cardTitleColor,
   }) : super(key: key);
 
@@ -32,21 +34,20 @@ class Ccard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Verificar el tipo de cardDataType y redirigir a la pantalla correspondiente
-        if (cardDataType is Monster) {
+        // Verificar el tipo de cardData y redirigir a la pantalla correspondiente
+        if (cardData is Monster) {
           // Redirigir a la pantalla de detalles del monstruo
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => MonsterDetails(monster: cardDataType)),
+                builder: (context) => MonsterDetails(monster: cardData)),
           );
-        } else if (cardDataType is ItemDecoration) {
+        } else if (cardData is ItemDecoration) {
           // Redirigir a la pantalla de detalles de la decoración
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    DecorationDetails(decoration: cardDataType)),
+                builder: (context) => DecorationDetails(decoration: cardData)),
           );
         }
         // else {
@@ -60,6 +61,7 @@ class Ccard extends StatelessWidget {
       child: Card(
         child: ListTile(
           leading: leading,
+          trailing: trailing,
           title: Text(
             cardTitle,
             style: TextStyle(
@@ -71,8 +73,11 @@ class Ccard extends StatelessWidget {
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (cardDescription.isNotEmpty) Text(cardDescription),
-              const SizedBox(height: 5),
+              // Verificar si cardBody no es null
+              if (cardBody != null) ...[
+                cardBody!, // Usar el operador de null-assertion para forzar el uso
+                const SizedBox(height: 5), // Espacio si hay descripción
+              ],
               Row(
                 children: [
                   Text(

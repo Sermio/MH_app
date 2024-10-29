@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mh_app/data/decoration.dart';
 import 'package:mh_app/components/c_card.dart';
-import 'package:mh_app/utils/monster_atributes.dart';
+import 'package:mh_app/utils/utils.dart';
+import 'package:mh_app/api/get_items_images.dart';
+import 'package:mh_app/components/url_image_loader.dart';
 
 class CdecorationList extends StatelessWidget {
   final Future<List<ItemDecoration>> Function()
@@ -49,19 +51,21 @@ class CdecorationList extends StatelessWidget {
           return ListView.builder(
             itemCount: filteredDecorations.length,
             itemBuilder: (context, index) {
-              final decorations = filteredDecorations[index];
+              final decoration = filteredDecorations[index];
               return Ccard(
-                cardDataType: decorations,
-                cardTitle: decorations.name,
-                cardDescription: "",
-                cardSubtitle1: decorations.rarity.toString(),
-                cardSubtitle2: decorations.slot.toString(),
+                cardData: decoration,
+                cardTitle: decoration.name,
+                cardBody: _decorationBody(decoration.skills),
+                cardSubtitle1: decoration.rarity.toString(),
+                cardSubtitle2: decoration.slot.toString(),
                 cardSubtitle1Label: "Rarity: ",
                 cardSubtitle2Label: "Slot: ",
-                leading: Icon(
-                  Icons.diamond,
-                  color: getColorForProperty(decorations.name),
-                  size: 50,
+                leading: _decorationLeading(decoration.skills),
+                trailing: Image.network(
+                  getDecorationSlotImage(decoration.slot),
+                  width: 25, // Ajusta el ancho según lo necesites
+                  height: 25, // Ajusta la altura según lo necesites
+                  fit: BoxFit.cover, // Ajusta cómo se debe escalar la imagen
                 ),
                 // cardTitleColor: getColorForProperty(decorations.name),
               );
@@ -69,6 +73,40 @@ class CdecorationList extends StatelessWidget {
           );
         }
       },
+    );
+  }
+
+  Column _decorationLeading(List<Skill> skills) {
+    return Column(
+      children: skills.map((skill) {
+        return Container(
+          width: 28, // Ajusta el ancho de la imagen
+          height: 28, // Ajusta la altura de la imagen
+          child: UrlImageLoader(
+            itemName: skill.skillName,
+            loadImageUrlFunction: getValidDecorationImageUrl,
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _decorationBody(List<Skill> skills) {
+    return Column(
+      children: skills.map((skill) {
+        return Row(
+          children: [
+            Text(
+              "${skill.skillName} ", // Skill name en texto normal
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            Text(
+              "+${skill.level}", // Skill level en negrita
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
+        );
+      }).toList(),
     );
   }
 }

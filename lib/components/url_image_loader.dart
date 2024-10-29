@@ -1,18 +1,22 @@
-// MonsterImageLoader.dart
+// ImageURLLoader.dart
 
 import 'package:flutter/material.dart';
-import 'package:mh_app/api/get_monster_image.dart';
 
-class MonsterImageLoader extends StatelessWidget {
-  final String monsterName;
+class UrlImageLoader extends StatelessWidget {
+  final String itemName;
+  final Future<String?> Function(String)
+      loadImageUrlFunction; // Función pasada como parámetro
 
-  const MonsterImageLoader({Key? key, required this.monsterName})
-      : super(key: key);
+  const UrlImageLoader({
+    Key? key,
+    required this.itemName,
+    required this.loadImageUrlFunction, // Recibir la función como parámetro
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<String?>(
-      future: getValidMonsterImageUrl(monsterName), // Llamamos a la función
+      future: loadImageUrlFunction(itemName), // Llamar a la función pasada
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
@@ -63,6 +67,7 @@ class MonsterImageLoader extends StatelessWidget {
           );
         } else {
           return Container(
+            //Contenedor de imagen de URL
             width: double.infinity,
             height: 200,
             decoration: BoxDecoration(

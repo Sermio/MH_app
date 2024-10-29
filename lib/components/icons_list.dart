@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mh_app/data/monster.dart';
-import 'package:mh_app/utils/monster_atributes.dart';
+import 'package:mh_app/utils/utils.dart';
 
 class IconsList extends StatelessWidget {
   const IconsList(this.elementalWeaknesses, this.ailmentWeaknesses,

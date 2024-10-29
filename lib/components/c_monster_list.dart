@@ -48,9 +48,9 @@ class CmonsterList extends StatelessWidget {
             itemBuilder: (context, index) {
               final monster = filteredMonsters[index];
               return Ccard(
-                cardDataType: monster,
+                cardData: monster,
                 cardTitle: monster.name,
-                cardDescription: monster.description,
+                cardBody: Text(monster.description),
                 cardSubtitle1: monster.type,
                 cardSubtitle2: monster.species,
                 cardSubtitle1Label: "Type: ",

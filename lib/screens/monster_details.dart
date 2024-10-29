@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mh_app/data/monster.dart';
 import 'package:mh_app/components/icons_list.dart';
-import 'package:mh_app/components/monster_image_loader.dart';
+import 'package:mh_app/components/url_image_loader.dart';
 import 'package:mh_app/components/monster_details_card.dart';
-import 'package:mh_app/utils/monster_atributes.dart';
+import 'package:mh_app/utils/utils.dart';
+import 'package:mh_app/api/get_items_images.dart';
 
 class MonsterDetails extends StatelessWidget {
   const MonsterDetails({super.key, required this.monster});
@@ -25,7 +26,9 @@ class MonsterDetails extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              MonsterImageLoader(monsterName: monster.name),
+              UrlImageLoader(
+                  itemName: monster.name,
+                  loadImageUrlFunction: getValidMonsterImageUrl),
               MonsterDetailsCard(monster: monster),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mh_app/data/decoration.dart';
+import 'package:mh_app/api/get_items_images.dart';
+import 'package:mh_app/components/url_image_loader.dart';
 
 class DecorationDetails extends StatelessWidget {
   const DecorationDetails({super.key, required this.decoration});
@@ -8,11 +10,6 @@ class DecorationDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final List<Weakness> elementWeakness =
-    //     getElementWeakness(decoration.weaknesses);
-    // final List<Weakness> ailmentsWeakness =
-    //     getAilmentsWeakness(decoration.weaknesses);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('${decoration.name} details'),
@@ -20,19 +17,78 @@ class DecorationDetails extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // DecorationImageLoader(monsterName: decoration.name),
-              // DecorationDetailsCard(decoration: decoration),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [IconsList(elementWeakness, ailmentsWeakness)],
-              // ),
+              Center(
+                child: Text(
+                  "Decoration Skills",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              if (decoration.skills.isNotEmpty) ...[
+                Column(
+                  children: decoration.skills.map((skill) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Contenedor para la imagen
+                          Container(
+                            width: 50, // Ajusta el ancho de la imagen
+                            height: 50, // Ajusta la altura de la imagen
+                            child: UrlImageLoader(
+                              itemName: skill.skillName,
+                              loadImageUrlFunction: getValidDecorationImageUrl,
+                            ),
+                          ),
+                          const SizedBox(
+                              width:
+                                  18), // Espacio entre la imagen y la descripción
+                          // Contenedor para el nombre y la descripción
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Contenedor para el nombre de la habilidad
+                                Container(
+                                  // width:
+                                  //     100, // Ajusta el ancho fijo según sea necesario
+                                  child: Text(
+                                    "${skill.skillName} + ${skill.level}",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    overflow: TextOverflow
+                                        .ellipsis, // Evita desbordamientos
+                                  ),
+                                ),
+                                // Descripción de la habilidad
+                                Text(
+                                  skill.description,
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ] else ...[
+                Text("No skills available"),
+              ],
               const SizedBox(height: 20), // Espacio antes del botón
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context); // Regresa a la pantalla anterior
-                },
-                child: const Text('Go Back'),
+              Center(
+                // Envuelve el botón con Center
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context); // Regresa a la pantalla anterior
+                  },
+                  child: const Text('Go Back'),
+                ),
               ),
             ],
           ),
