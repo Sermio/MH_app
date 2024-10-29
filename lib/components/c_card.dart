@@ -1,75 +1,104 @@
 import 'package:flutter/material.dart';
+import 'package:mh_app/data/decoration.dart';
 import 'package:mh_app/data/monster.dart';
-import 'package:mh_app/screens/card_details.dart';
+import 'package:mh_app/screens/monster_details.dart';
+import 'package:mh_app/screens/decoration_details.dart';
 
 class Ccard extends StatelessWidget {
-  final Monster monster;
+  final dynamic cardDataType; // Cambiado a dynamic
+  final String cardTitle;
+  final String cardDescription;
+  String? cardSubtitle1 = "Subtitle1";
+  String? cardSubtitle2 = "Subtitle2";
+  String? cardSubtitle1Label = "cardSubtitle1Label";
+  String? cardSubtitle2Label = "cardSubtitle2Label";
+  final Icon? leading;
+  final Color? cardTitleColor;
 
-  const Ccard({Key? key, required this.monster}) : super(key: key);
+  Ccard({
+    Key? key,
+    required this.cardDataType, // Usar cardDataType
+    required this.cardTitle,
+    required this.cardDescription,
+    this.cardSubtitle1,
+    this.cardSubtitle2,
+    this.cardSubtitle1Label,
+    this.cardSubtitle2Label,
+    this.leading,
+    this.cardTitleColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => CardDetails(monster)));
+        // Verificar el tipo de cardDataType y redirigir a la pantalla correspondiente
+        if (cardDataType is Monster) {
+          // Redirigir a la pantalla de detalles del monstruo
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MonsterDetails(monster: cardDataType)),
+          );
+        } else if (cardDataType is ItemDecoration) {
+          // Redirigir a la pantalla de detalles de la decoración
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    DecorationDetails(decoration: cardDataType)),
+          );
+        }
+        // else {
+        //   // Redirigir a una pantalla por defecto
+        //   Navigator.push(
+        //     context,
+        //     MaterialPageRoute(builder: (context) => DefaultScreen()), // Cambia esto por tu pantalla por defecto
+        //   );
+        // }
       },
       child: Card(
         child: ListTile(
-          // leading: const Icon(Icons.pets_outlined),
-          // trailing: IconButton(
-          //   icon: const Icon(Icons.add_shopping_cart_sharp),
-          //   onPressed: () {},
-          // ),
+          leading: leading,
           title: Text(
-            monster.name,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            cardTitle,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: cardTitleColor,
+            ),
           ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(monster.description),
-              const SizedBox(height: 15),
+              if (cardDescription.isNotEmpty) Text(cardDescription),
+              const SizedBox(height: 5),
               Row(
                 children: [
-                  const Text(
-                    "Type: ",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  Text(
+                    cardSubtitle1Label ?? "cardSubtitle1Label",
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    monster.type,
-                  )
+                    cardSubtitle1 ?? "subtitle1",
+                  ),
                 ],
               ),
               Row(
                 children: [
-                  const Text(
-                    "Species: ",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  Text(
+                    cardSubtitle2Label ?? "cardSubtitle2Label",
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    monster.species,
-                  )
+                    cardSubtitle2 ?? "subtitle2",
+                  ),
                 ],
               ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class PriceWidget extends StatelessWidget {
-  final double price;
-
-  const PriceWidget({Key? key, required this.price}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      '${price.toStringAsFixed(2)} €',
-      style: const TextStyle(fontWeight: FontWeight.w900),
     );
   }
 }

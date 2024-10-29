@@ -52,19 +52,35 @@ Color zoneBackgroundColor(String zone) {
 }
 
 IconData? getIconForElement(String element) {
-  switch (element) {
-    case 'fire':
-      return Icons.fireplace_outlined;
-    case 'water':
-      return Icons.water_drop;
-    case 'thunder':
-      return Icons.flash_on;
-    case 'ice':
-      return Icons.ac_unit;
-    case 'dragon':
-      return Icons.local_pizza;
-    default:
-      return null; // Ícono por defecto
+  if (element.contains('fire')) {
+    return Icons.fireplace_outlined;
+  } else if (element.contains('water')) {
+    return Icons.water_drop;
+  } else if (element.contains('thunder')) {
+    return Icons.flash_on;
+  } else if (element.contains('ice')) {
+    return Icons.ac_unit;
+  } else if (element.contains('dragon')) {
+    return Icons.local_pizza;
+  } else {
+    return null; // Ícono por defecto
+  }
+}
+
+Color? getColorForProperty(String element) {
+  element = element.toLowerCase();
+  if (element.contains('fire')) {
+    return Colors.red; // Color para fuego
+  } else if (element.contains('water')) {
+    return Colors.blue; // Color para agua
+  } else if (element.contains('thunder')) {
+    return Colors.yellow; // Color para trueno
+  } else if (element.contains('ice')) {
+    return Colors.lightBlue; // Color para hielo
+  } else if (element.contains('dragon')) {
+    return Colors.purple; // Color para dragón
+  } else {
+    return null; // Color por defecto (puedes elegir uno si lo prefieres)
   }
 }
 

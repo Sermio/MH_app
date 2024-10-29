@@ -5,8 +5,8 @@ import 'package:mh_app/components/monster_image_loader.dart';
 import 'package:mh_app/components/monster_details_card.dart';
 import 'package:mh_app/utils/monster_atributes.dart';
 
-class CardDetails extends StatelessWidget {
-  const CardDetails(this.monster, {super.key});
+class MonsterDetails extends StatelessWidget {
+  const MonsterDetails({super.key, required this.monster});
 
   final Monster monster;
 
