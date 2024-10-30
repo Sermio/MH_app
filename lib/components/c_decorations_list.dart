@@ -60,11 +60,13 @@ class CdecorationList extends StatelessWidget {
                 cardSubtitle1Label: "Rarity: ",
                 cardSubtitle2Label: "Slot: ",
                 leading: _decorationLeading(decoration.skills),
-                trailing: Image.network(
-                  getDecorationSlotImage(decoration.slot),
+                trailing: SizedBox(
                   width: 25, // Ajusta el ancho según lo necesites
                   height: 25, // Ajusta la altura según lo necesites
-                  fit: BoxFit.cover, // Ajusta cómo se debe escalar la imagen
+                  child: Image.network(
+                    getDecorationSlotImage(decoration.slot),
+                    fit: BoxFit.cover, // Ajusta cómo se debe escalar la imagen
+                  ),
                 ),
                 // cardTitleColor: getColorForProperty(decorations.name),
               );
