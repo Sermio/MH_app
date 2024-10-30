@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mh_app/data/decoration.dart';
 import 'package:mh_app/data/monster.dart';
-import 'package:mh_app/screens/monster_details.dart';
-import 'package:mh_app/screens/decoration_details.dart';
+import 'package:mh_app/screens/monster_details_screen.dart';
+import 'package:mh_app/screens/decoration_details_screen.dart';
 
+// ignore: must_be_immutable
 class Ccard extends StatelessWidget {
   final dynamic cardData; // Cambiado a dynamic
   final String cardTitle;

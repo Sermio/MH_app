@@ -4,7 +4,7 @@ class Monster {
   final String type;
   final String species;
   final String description;
-  final List<Location> location;
+  final List<MonsterLocation> location;
   final List<Weakness> weaknesses;
   final List<Reward> rewards;
 
@@ -27,7 +27,7 @@ class Monster {
       species: json['species'] ?? "Unknown Species",
       description: json['description'] ?? "No description available",
       location: (json['locations'] as List<dynamic>?)
-              ?.map((locationJson) => Location.fromJson(locationJson))
+              ?.map((locationJson) => MonsterLocation.fromJson(locationJson))
               .toList() ??
           [],
       weaknesses: (json['weaknesses'] as List<dynamic>?)
@@ -62,22 +62,22 @@ class Weakness {
   }
 }
 
-class Location {
+class MonsterLocation {
   final int id;
   final int zoneCount;
   final String? name;
 
-  Location({
+  MonsterLocation({
     required this.id,
     required this.zoneCount,
     this.name,
   });
 
-  factory Location.fromJson(Map<String, dynamic> json) {
-    return Location(
+  factory MonsterLocation.fromJson(Map<String, dynamic> json) {
+    return MonsterLocation(
       id: json['id'],
       zoneCount: json['zoneCount'] ?? "Unknown zoneCount",
-      name: json['name'] ?? "Unknown Location",
+      name: json['name'] ?? "Unknown Monster Location",
     );
   }
 }

@@ -112,3 +112,20 @@ Color getColorForStars(int stars) {
     return Colors.grey; // Color por defecto si no hay coincidencias
   }
 }
+
+int countLocationImages(String location) {
+  switch (location) {
+    case 'Ancient Forest':
+      return 3;
+    case 'Coral Highlands':
+      return 3;
+    case 'Wildspire Waste':
+      return 3;
+    case 'Rotten Vale':
+      return 3;
+    case "Elder's Recess":
+      return 2;
+    default:
+      return 0;
+  }
+}

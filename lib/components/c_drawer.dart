@@ -21,12 +21,12 @@ class _CdrawerState extends State<Cdrawer> {
       _decorationData; // Almacenaremos la llamada aquí
 
   Future<List<Monster>> fetchMonsters() async {
-    _monsterData ??= MonsterApi.fetchMonsters();
+    _monsterData ??= GetMonstersList.fetchMonsters();
     return _monsterData!;
   }
 
   Future<List<ItemDecoration>> fetchDecorations() async {
-    _decorationData ??= DecorationApi.fetchDecorations();
+    _decorationData ??= GetDecorationsList.fetchDecorations();
     return _decorationData!;
   }
 

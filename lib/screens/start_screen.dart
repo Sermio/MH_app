@@ -8,7 +8,7 @@ class StartScreen extends StatelessWidget {
   const StartScreen({Key? key}) : super(key: key);
 
   Future<List<Monster>> fetchMonsters() async {
-    return await MonsterApi.fetchMonsters();
+    return await GetMonstersList.fetchMonsters();
   }
 
   @override

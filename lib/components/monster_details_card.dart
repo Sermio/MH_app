@@ -1,8 +1,10 @@
 // MonsterDetailsCard.dart
 
 import 'package:flutter/material.dart';
+import 'package:mh_app/data/location.dart';
 import 'package:mh_app/data/monster.dart';
 import 'package:mh_app/utils/utils.dart';
+import 'package:mh_app/components/c_chip.dart';
 
 class MonsterDetailsCard extends StatelessWidget {
   final Monster monster;
@@ -57,10 +59,11 @@ class MonsterDetailsCard extends StatelessWidget {
                     spacing: 8.0,
                     runSpacing: 4.0,
                     children: monster.location.map((loc) {
-                      return Chip(
-                        backgroundColor: zoneBackgroundColor(loc.name ?? ""),
-                        label: Text(loc.name ?? "Unknown Location"),
-                      );
+                      return Cchip(
+                          // item: monster,
+                          chipItem: loc,
+                          itemName: loc.name ?? "",
+                          getItemColor: zoneBackgroundColor);
                     }).toList(),
                   ),
                 ],

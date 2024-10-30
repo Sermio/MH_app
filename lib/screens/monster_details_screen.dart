@@ -3,6 +3,7 @@ import 'package:mh_app/data/monster.dart';
 import 'package:mh_app/components/icons_list.dart';
 import 'package:mh_app/components/url_image_loader.dart';
 import 'package:mh_app/components/monster_details_card.dart';
+import 'package:mh_app/components/c_back_button.dart';
 import 'package:mh_app/utils/utils.dart';
 import 'package:mh_app/api/get_items_images.dart';
 
@@ -22,28 +23,30 @@ class MonsterDetails extends StatelessWidget {
       appBar: AppBar(
         title: Text('${monster.name} details'),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              UrlImageLoader(
-                  itemName: monster.name,
-                  loadImageUrlFunction: getValidMonsterImageUrl),
-              MonsterDetailsCard(monster: monster),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [IconsList(elementWeakness, ailmentsWeakness)],
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  UrlImageLoader(
+                    itemName: monster.name,
+                    loadImageUrlFunction: getValidMonsterImageUrl,
+                  ),
+                  MonsterDetailsCard(monster: monster),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconsList(elementWeakness, ailmentsWeakness),
+                    ],
+                  ),
+                  const SizedBox(height: 120), // Espacio para el botón
+                ],
               ),
-              const SizedBox(height: 20), // Espacio antes del botón
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context); // Regresa a la pantalla anterior
-                },
-                child: const Text('Go Back'),
-              ),
-            ],
+            ),
           ),
-        ),
+          const CbackButton(),
+        ],
       ),
     );
   }
