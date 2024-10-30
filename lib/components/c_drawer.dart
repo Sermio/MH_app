@@ -32,79 +32,84 @@ class _CdrawerState extends State<Cdrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://imgs.search.brave.com/zzQeygerqDO1dyV2rLzBDdAwpOrplEXSqDFS0F3Taz0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5hcGkucGxheXN0/YXRpb24uY29tL3Z1/bGNhbi9pbWcvcm5k/LzIwMjAxMC8wMTA2/L0l5WTNKU3pITkNW/b2g3RnVsdE1QYUU4/Ri5qcGc'),
-                fit: BoxFit.cover,
+    return SizedBox(
+      width: 200, // Ajusta el ancho aquí (en píxeles)
+      child: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                image: DecorationImage(
+                  image: NetworkImage(
+                      'https://imgs.search.brave.com/zzQeygerqDO1dyV2rLzBDdAwpOrplEXSqDFS0F3Taz0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5hcGkucGxheXN0/YXRpb24uY29tL3Z1/bGNhbi9pbWcvcm5k/LzIwMjAxMC8wMTA2/L0l5WTNKU3pITkNW/b2g3RnVsdE1QYUU4/Ri5qcGc'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Text(
+                '',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 24,
+                ),
               ),
             ),
-            child: Text(
-              'Menu',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
+            ListTile(
+              title: const Text('Sample'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SampleScreen()),
+                );
+              },
             ),
-          ),
-          ListTile(
-            title: const Text('Sample'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SampleScreen()),
-              );
-            },
-          ),
-          ListTile(
-            title: const Text('Monsters'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return CardList(
-                      fetchCardData: fetchMonsters,
-                      cardListWidget: (dynamic futureData, String filterText) {
-                        return CmonsterList(
-                          loadMonsters: () async => futureData,
-                          filterText: filterText,
-                        );
-                      },
-                    );
-                  },
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: const Text('Decorations'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return CardList(
-                      fetchCardData: fetchDecorations,
-                      cardListWidget: (dynamic futureData, String filterText) {
-                        return CdecorationList(
-                          loadDecorations: () async => futureData,
-                          filterText: filterText,
-                        );
-                      },
-                    );
-                  },
-                ),
-              );
-            },
-          ),
-        ],
+            ListTile(
+              title: const Text('Monsters'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CardList(
+                        fetchCardData: fetchMonsters,
+                        cardListWidget:
+                            (dynamic futureData, String filterText) {
+                          return CmonsterList(
+                            loadMonsters: () async => futureData,
+                            filterText: filterText,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Decorations'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CardList(
+                        fetchCardData: fetchDecorations,
+                        cardListWidget:
+                            (dynamic futureData, String filterText) {
+                          return CdecorationList(
+                            loadDecorations: () async => futureData,
+                            filterText: filterText,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
