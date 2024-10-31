@@ -47,17 +47,14 @@ class CmonsterList extends StatelessWidget {
             itemCount: filteredMonsters.length,
             itemBuilder: (context, index) {
               final monster = filteredMonsters[index];
-              return Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Ccard(
-                  cardData: monster,
-                  cardTitle: monster.name,
-                  cardBody: _cardDescription(monster.description),
-                  cardSubtitle1: monster.type,
-                  cardSubtitle2: monster.species,
-                  cardSubtitle1Label: "Type: ",
-                  cardSubtitle2Label: "Species: ",
-                ),
+              return Ccard(
+                cardData: monster,
+                cardTitle: monster.name,
+                cardBody: _cardDescription(monster.description),
+                cardSubtitle1: monster.type,
+                cardSubtitle2: monster.species,
+                cardSubtitle1Label: "Type: ",
+                cardSubtitle2Label: "Species: ",
               );
             },
           );

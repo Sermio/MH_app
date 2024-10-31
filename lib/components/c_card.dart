@@ -59,49 +59,52 @@ class Ccard extends StatelessWidget {
         //   );
         // }
       },
-      child: Card(
-        child: ListTile(
-          leading: leading,
-          trailing: trailing,
-          title: Text(
-            cardTitle,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-              color: cardTitleColor,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+        child: Card(
+          child: ListTile(
+            leading: leading,
+            trailing: trailing,
+            title: Text(
+              cardTitle,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: cardTitleColor,
+              ),
             ),
-          ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Verificar si cardBody no es null
-              if (cardBody != null) ...[
-                cardBody!, // Usar el operador de null-assertion para forzar el uso
-                const SizedBox(height: 5), // Espacio si hay descripción
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Verificar si cardBody no es null
+                if (cardBody != null) ...[
+                  cardBody!, // Usar el operador de null-assertion para forzar el uso
+                  const SizedBox(height: 5), // Espacio si hay descripción
+                ],
+                Row(
+                  children: [
+                    Text(
+                      cardSubtitle1Label ?? "cardSubtitle1Label",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      cardSubtitle1 ?? "subtitle1",
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      cardSubtitle2Label ?? "cardSubtitle2Label",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      cardSubtitle2 ?? "subtitle2",
+                    ),
+                  ],
+                ),
               ],
-              Row(
-                children: [
-                  Text(
-                    cardSubtitle1Label ?? "cardSubtitle1Label",
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    cardSubtitle1 ?? "subtitle1",
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text(
-                    cardSubtitle2Label ?? "cardSubtitle2Label",
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    cardSubtitle2 ?? "subtitle2",
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
         ),
       ),
