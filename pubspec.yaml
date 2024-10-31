@@ -69,6 +69,7 @@ flutter:
     - assets/images/maps/Coral-Highlands/
     - assets/images/maps/Rotten-Vale/
     - assets/images/maps/Elder's-Recess/
+    - assets/images/decorations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

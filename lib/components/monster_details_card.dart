@@ -32,6 +32,10 @@ class MonsterDetailsCard extends StatelessWidget {
                 children: [
                   Text(monster.description),
                   const SizedBox(height: 15),
+                  Divider(
+                    // thickness: 1,
+                    color: Colors.black,
+                  ),
                   Row(
                     children: [
                       const Text(

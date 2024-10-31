@@ -63,9 +63,19 @@ class CdecorationList extends StatelessWidget {
                 trailing: SizedBox(
                   width: 25, // Ajusta el ancho según lo necesites
                   height: 25, // Ajusta la altura según lo necesites
-                  child: Image.network(
-                    getDecorationSlotImage(decoration.slot),
-                    fit: BoxFit.cover, // Ajusta cómo se debe escalar la imagen
+                  // child: Image.network(
+                  //   getDecorationSlotImage(decoration.slot),
+                  //   fit: BoxFit.cover, // Ajusta cómo se debe escalar la imagen
+                  // ),
+                  child: Image.asset(
+                    'assets/images/decorations/gem_level_${decoration.slot}.png',
+                    fit: BoxFit.contain,
+                    width: MediaQuery.of(context)
+                        .size
+                        .width, // Ancho de la pantalla
+                    height: MediaQuery.of(context)
+                        .size
+                        .height, // Alto de la pantalla
                   ),
                 ),
                 // cardTitleColor: getColorForProperty(decorations.name),

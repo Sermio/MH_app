@@ -47,19 +47,33 @@ class CmonsterList extends StatelessWidget {
             itemCount: filteredMonsters.length,
             itemBuilder: (context, index) {
               final monster = filteredMonsters[index];
-              return Ccard(
-                cardData: monster,
-                cardTitle: monster.name,
-                cardBody: Text(monster.description),
-                cardSubtitle1: monster.type,
-                cardSubtitle2: monster.species,
-                cardSubtitle1Label: "Type: ",
-                cardSubtitle2Label: "Species: ",
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: Ccard(
+                  cardData: monster,
+                  cardTitle: monster.name,
+                  cardBody: _cardDescription(monster.description),
+                  cardSubtitle1: monster.type,
+                  cardSubtitle2: monster.species,
+                  cardSubtitle1Label: "Type: ",
+                  cardSubtitle2Label: "Species: ",
+                ),
               );
             },
           );
         }
       },
+    );
+  }
+
+  Text _cardDescription(String description) {
+    return Text(
+      description, // Asegúrate de que sea un String
+      maxLines: 2, // Puedes ajustar este número según lo necesites
+      overflow: TextOverflow
+          .ellipsis, // Agrega '...' al final si el texto es muy largo
+      style:
+          const TextStyle(fontSize: 14), // Ajusta el estilo según lo necesites
     );
   }
 }

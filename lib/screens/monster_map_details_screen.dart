@@ -27,6 +27,7 @@ class MonsterMapDetails<T> extends StatelessWidget {
               Navigator.of(context).pop(), // Cierra la imagen al tocar fuera
           child: Center(
             child: InteractiveViewer(
+              maxScale: double.infinity,
               child: Image.asset(
                 imagePath,
                 fit: BoxFit.contain,
@@ -124,8 +125,15 @@ class MonsterMapDetails<T> extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
+                                // decoration: TextDecoration.underline,
                               ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+                            child: Divider(
+                              height: 5,
+                              color: Colors.black,
                             ),
                           ),
                           const SizedBox(height: 10),
