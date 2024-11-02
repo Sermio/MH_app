@@ -4,15 +4,15 @@ Future<String?> getValidMonsterImageUrl(String monsterName) async {
   // Lista de posibles URLs con variaciones
   List<String> urlVariations = [
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '-')}_render_001.png",
+    "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '_')}_render_001.png",
+    "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '-')}_render_002.png",
+    "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '_')}_render_002.png",
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '-')}_render_001_(1).png",
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '-')}_render_001_(2).png",
-    "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '-')}_render_002.png",
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '-')}_render_002_(1).png",
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '-')}_render_002_(2).png",
-    "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '_')}_render_001.png",
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '_')}_render_001_(1).png",
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '_')}_render_001_(2).png",
-    "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '_')}_render_002.png",
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '_')}_render_002_(1).png",
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/mhw-${monsterName.toLowerCase().replaceAll(' ', '_')}_render_002_(2).png",
   ];
@@ -35,23 +35,38 @@ Future<String?> getValidDecorationImageUrl(String decorationName) async {
   // Lista de posibles URLs con variaciones
   List<String> urlVariations = [
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/${decorationName.toLowerCase().replaceAll(' ', '-')}-skill-mhw.png",
-    "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/${decorationName.toLowerCase().replaceAll(' ', '-')}-skill-icon.png",
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/${decorationName.toLowerCase().replaceAll(' ', '_')}-skill-mhw.png",
+    "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/${decorationName.toLowerCase().replaceAll(' ', '-')}-skill-icon.png",
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/${decorationName.toLowerCase().replaceAll(' ', '_')}-skill-icon.png",
   ];
 
-  // Iterar sobre las variaciones de URL
-  for (String url in urlVariations) {
-    final response =
-        await http.head(Uri.parse(url)); // Solo obtenemos los headers
+  // Define el tiempo de espera y el número máximo de reintentos
+  const int maxRetries = 4;
+  const Duration timeoutDuration = Duration(seconds: 2);
 
-    // Verificamos si la respuesta fue exitosa
-    if (response.statusCode == 200) {
-      return url; // Retorna la primera URL válida
+  for (String url in urlVariations) {
+    for (int attempt = 0; attempt < maxRetries; attempt++) {
+      try {
+        // Hacemos una solicitud HTTP de encabezado con timeout
+        final response = await http
+            .head(Uri.parse(url))
+            .timeout(timeoutDuration); // Tiempo de espera
+
+        if (response.statusCode == 200) {
+          return url; // Retorna la primera URL válida
+        }
+      } catch (e) {
+        // Ignora los errores y pasa al siguiente intento
+        if (attempt == maxRetries - 1) {
+          print(
+              "Error al cargar imagen en $url después de $maxRetries intentos.");
+        }
+      }
     }
   }
 
-  return 'https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/evade-window-skill-mhw.png'; // Si ninguna URL fue válida
+  // URL de imagen por defecto
+  return 'https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/evade-window-skill-mhw.png';
 }
 
 Future<String?> getValidLocationImageUrl(String locationName) async {

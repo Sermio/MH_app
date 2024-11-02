@@ -29,6 +29,7 @@ class _CardListState extends State<CardList> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         key: _scaffoldKey,
         appBar: Cappbar(scaffoldKey: _scaffoldKey),

@@ -89,6 +89,7 @@ class DecorationList extends StatelessWidget {
 
   Column _decorationLeading(List<Skill> skills) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: skills.map((skill) {
         return SizedBox(
           width: 28, // Ajusta el ancho de la imagen
