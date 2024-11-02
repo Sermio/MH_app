@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mh_app/data/monster.dart';
 import 'package:mh_app/components/c_card.dart';
 
-class CmonsterList extends StatelessWidget {
+class MonsterList extends StatelessWidget {
   final Future<List<Monster>> Function()
       loadMonsters; // Asegúrate de que esto sea Future<List<Monster>>
   final String filterText;
 
-  const CmonsterList({
+  const MonsterList({
     Key? key,
     required this.loadMonsters,
     required this.filterText,

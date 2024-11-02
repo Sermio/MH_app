@@ -1,7 +1,6 @@
 // MonsterDetailsCard.dart
 
 import 'package:flutter/material.dart';
-import 'package:mh_app/data/location.dart';
 import 'package:mh_app/data/monster.dart';
 import 'package:mh_app/utils/utils.dart';
 import 'package:mh_app/components/c_chip.dart';

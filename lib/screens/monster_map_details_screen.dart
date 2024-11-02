@@ -130,7 +130,7 @@ class MonsterMapDetails<T> extends StatelessWidget {
                             ),
                           ),
                           const Padding(
-                            padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+                            padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
                             child: Divider(
                               height: 5,
                               color: Colors.black,
@@ -138,8 +138,7 @@ class MonsterMapDetails<T> extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           // Mostrar lista de camps
-                          if (location.camps != null &&
-                              location.camps.isNotEmpty)
+                          if (location.camps.isNotEmpty)
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: location.camps.map((camp) {

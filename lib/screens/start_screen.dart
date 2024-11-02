@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mh_app/screens/card_list.dart';
 import 'package:mh_app/data/monster.dart';
 import 'package:mh_app/api/gets.dart';
-import 'package:mh_app/components/c_monster_list.dart';
+import 'package:mh_app/screens/monster_list_screen.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class StartScreen extends StatelessWidget {
       fetchCardData: fetchMonsters,
       cardListWidget: (dynamic futureData, String filterText) {
         // futureData es ahora dynamic
-        return CmonsterList(
+        return MonsterList(
           loadMonsters: () async => futureData,
           filterText: filterText,
         );

@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:mh_app/data/decoration.dart';
+import 'package:mh_app/data/skill.dart';
+import 'package:mh_app/api/gets.dart';
 import 'package:mh_app/api/get_items_images.dart';
 import 'package:mh_app/components/url_image_loader.dart';
-import 'package:mh_app/components/c_back_button.dart';
+import 'package:mh_app/components/c_preview_container.dart';
 
 class DecorationDetails extends StatelessWidget {
-  const DecorationDetails({super.key, required this.decoration});
+  const DecorationDetails({Key? key, required this.decoration})
+      : super(key: key);
 
   final ItemDecoration decoration;
 
   @override
   Widget build(BuildContext context) {
+    final overlayPortalController = OverlayPortalController();
+    final overlayVisible = ValueNotifier<bool>(false);
+    final overlayPosition = ValueNotifier<Offset>(Offset.zero);
+    final selectedSkillId = ValueNotifier<int>(0);
+    final selectedSkillLevel = ValueNotifier<int>(0); // Añadir para el nivel
+
     return Scaffold(
       appBar: AppBar(
         title: Text('${decoration.name} details'),
@@ -20,7 +29,6 @@ class DecorationDetails extends StatelessWidget {
           SingleChildScrollView(
             child: Center(
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Center(
                     child: Text(
@@ -32,23 +40,38 @@ class DecorationDetails extends StatelessWidget {
                   if (decoration.skills.isNotEmpty) ...[
                     Column(
                       children: decoration.skills.map((skill) {
+                        final GlobalKey gestureKey =
+                            GlobalKey(); // Clave única para cada habilidad
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Contenedor para la imagen
                               SizedBox(
                                 width: 50,
                                 height: 50,
-                                child: UrlImageLoader(
-                                  itemName: skill.skillName,
-                                  loadImageUrlFunction:
-                                      getValidDecorationImageUrl,
+                                child: GestureDetector(
+                                  key: gestureKey,
+                                  onTap: () {
+                                    toggleOverlay(
+                                        skill.skillId,
+                                        skill
+                                            .level, // Pasar el nivel de habilidad
+                                        gestureKey,
+                                        overlayPortalController,
+                                        overlayVisible,
+                                        overlayPosition,
+                                        selectedSkillId,
+                                        selectedSkillLevel); // Agregar aquí
+                                  },
+                                  child: UrlImageLoader(
+                                    itemName: skill.skillName,
+                                    loadImageUrlFunction:
+                                        getValidDecorationImageUrl,
+                                  ),
                                 ),
                               ),
                               const SizedBox(width: 18),
-                              // Contenedor para el nombre y la descripción
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,15 +99,121 @@ class DecorationDetails extends StatelessWidget {
                   ] else ...[
                     const Text("No skills available"),
                   ],
-                  const SizedBox(
-                      height: 80), // Espacio para que no cubra el botón
+                  const SizedBox(height: 80),
                 ],
               ),
             ),
           ),
-          const CbackButton(),
+          ValueListenableBuilder<bool>(
+            valueListenable: overlayVisible,
+            builder: (context, isVisible, child) {
+              if (isVisible) {
+                return ValueListenableBuilder<Offset>(
+                  valueListenable: overlayPosition,
+                  builder: (context, position, child) {
+                    return CcontainerPreview(
+                      overlayPortalController: overlayPortalController,
+                      position: position,
+                      content: previewContainerElements(
+                        selectedSkillId.value,
+                        selectedSkillLevel.value, // Pasar el nivel aquí
+                      ),
+                    );
+                  },
+                );
+              }
+              return Container(); // No muestra nada si no es visible
+            },
+          ),
         ],
       ),
     );
+  }
+
+  void toggleOverlay(
+      int skillId,
+      int skillLevel, // Recibir el nivel aquí
+      GlobalKey gestureKey,
+      OverlayPortalController overlayPortalController,
+      ValueNotifier<bool> overlayVisible,
+      ValueNotifier<Offset> overlayPosition,
+      ValueNotifier<int> selectedSkillId,
+      ValueNotifier<int> selectedSkillLevel) {
+    // Agregar aquí
+    if (gestureKey.currentContext != null) {
+      final renderBox =
+          gestureKey.currentContext!.findRenderObject() as RenderBox;
+      final position = renderBox.localToGlobal(Offset.zero);
+      final size = renderBox.size;
+
+      overlayPosition.value = Offset(
+        position.dx + size.width,
+        position.dy + size.height,
+      );
+
+      selectedSkillId.value =
+          skillId; // Actualiza el ID de la habilidad seleccionada
+      selectedSkillLevel.value =
+          skillLevel; // Actualiza el nivel de la habilidad seleccionada
+      overlayVisible.value = !overlayVisible.value;
+
+      if (overlayVisible.value) {
+        overlayPortalController.show();
+      } else {
+        overlayPortalController.hide();
+      }
+    }
+  }
+
+  Widget previewContainerElements(int skillId, int skillLevel) {
+    return FutureBuilder<SpecificSkill>(
+      future: fetchDecorationSkill(
+          skillId), // Llama a la función para obtener la habilidad
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text("Error: ${snapshot.error}"));
+        } else if (snapshot.hasData) {
+          final skill = snapshot.data!;
+          return ListView.separated(
+            shrinkWrap: true, // Para que no ocupe todo el espacio
+            physics:
+                const NeverScrollableScrollPhysics(), // Deshabilitar el scroll
+            itemCount: skill.ranks.length,
+            separatorBuilder: (context, index) => const Divider(),
+            itemBuilder: (context, index) {
+              final rank = skill.ranks[index];
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Lvl ${rank.level}: ",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: rank.level == skillLevel
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                      )),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: Text(
+                      rank.description,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+        }
+        return Container(); // En caso de que no haya datos
+      },
+    );
+  }
+
+  Future<SpecificSkill> fetchDecorationSkill(int skillId) async {
+    return await GetDecorationsList.fetchDecorationSkill(skillId);
   }
 }

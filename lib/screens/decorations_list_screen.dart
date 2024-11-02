@@ -4,12 +4,12 @@ import 'package:mh_app/components/c_card.dart';
 import 'package:mh_app/api/get_items_images.dart';
 import 'package:mh_app/components/url_image_loader.dart';
 
-class CdecorationList extends StatelessWidget {
+class DecorationList extends StatelessWidget {
   final Future<List<ItemDecoration>> Function()
       loadDecorations; // Asegúrate de que esto sea Future<List<Decoration>>
   final String filterText;
 
-  const CdecorationList({
+  const DecorationList({
     Key? key,
     required this.loadDecorations,
     required this.filterText,

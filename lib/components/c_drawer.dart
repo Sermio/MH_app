@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mh_app/screens/card_list.dart';
 import 'package:mh_app/api/gets.dart';
-import 'package:mh_app/components/c_monster_list.dart';
-import 'package:mh_app/components/c_decorations_list.dart';
+import 'package:mh_app/screens/monster_list_screen.dart';
+import 'package:mh_app/screens/decorations_list_screen.dart';
 import 'package:mh_app/screens/sample_screen.dart';
 import 'package:mh_app/data/monster.dart';
 import 'package:mh_app/data/decoration.dart';
@@ -75,7 +75,7 @@ class _CdrawerState extends State<Cdrawer> {
                         fetchCardData: fetchMonsters,
                         cardListWidget:
                             (dynamic futureData, String filterText) {
-                          return CmonsterList(
+                          return MonsterList(
                             loadMonsters: () async => futureData,
                             filterText: filterText,
                           );
@@ -97,7 +97,7 @@ class _CdrawerState extends State<Cdrawer> {
                         fetchCardData: fetchDecorations,
                         cardListWidget:
                             (dynamic futureData, String filterText) {
-                          return CdecorationList(
+                          return DecorationList(
                             loadDecorations: () async => futureData,
                             filterText: filterText,
                           );
