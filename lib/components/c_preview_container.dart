@@ -37,56 +37,6 @@ class CcontainerPreview extends StatelessWidget {
               ],
             ),
             child: content,
-
-            // const Column(
-            //   crossAxisAlignment: CrossAxisAlignment.center,
-            //   children: [
-            //     Text(
-            //       "Skill levels",
-            //       style: TextStyle(fontWeight: FontWeight.bold),
-            //     ),
-            //     SizedBox(height: 8), // Espaciado entre textos
-            //     Row(
-            //       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         Flexible(
-            //           child: Text(
-            //             "Lvl: ",
-            //             style: TextStyle(fontSize: 18),
-            //             overflow: TextOverflow.ellipsis, // Previene overflow
-            //           ),
-            //         ),
-            //         Flexible(
-            //           child: Text(
-            //             "Skill description by level",
-            //             style: TextStyle(fontSize: 14),
-            //             // overflow: TextOverflow.ellipsis, // Previene overflow
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //     Divider(),
-            //     Row(
-            //       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         Flexible(
-            //           child: Text(
-            //             "Lvl: ",
-            //             style: TextStyle(fontSize: 18),
-            //             overflow: TextOverflow.ellipsis, // Previene overflow
-            //           ),
-            //         ),
-            //         Flexible(
-            //           child: Text(
-            //             "Skill description by level",
-            //             style: TextStyle(fontSize: 14),
-            //             // overflow: TextOverflow.ellipsis, // Previene overflow
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ],
-            // ),
           ),
         );
       },
