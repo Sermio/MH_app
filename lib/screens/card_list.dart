@@ -24,31 +24,25 @@ class CardList extends StatefulWidget {
 class _CardListState extends State<CardList> {
   String filterText = '';
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        key: _scaffoldKey,
-        appBar: Cappbar(scaffoldKey: _scaffoldKey),
-        drawer: const Cdrawer(),
-        body: Column(
-          children: [
-            CcardFilter(
-              filterText: filterText,
-              onFilterChanged: (value) {
-                setState(() {
-                  filterText = value;
-                });
-              },
-            ),
-            Expanded(
-              child: widget.cardListWidget(widget.fetchCardData(), filterText),
-            ),
-          ],
-        ),
+    return Scaffold(
+      appBar: const Cappbar(),
+      drawer: const Cdrawer(),
+      body: Column(
+        children: [
+          CcardFilter(
+            filterText: filterText,
+            onFilterChanged: (value) {
+              setState(() {
+                filterText = value;
+              });
+            },
+          ),
+          Expanded(
+            child: widget.cardListWidget(widget.fetchCardData(), filterText),
+          ),
+        ],
       ),
     );
   }

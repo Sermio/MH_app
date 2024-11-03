@@ -13,15 +13,17 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CardList(
-      fetchCardData: fetchMonsters,
-      cardListWidget: (dynamic futureData, String filterText) {
-        // futureData es ahora dynamic
-        return MonsterList(
-          loadMonsters: () async => futureData,
-          filterText: filterText,
-        );
-      },
+    return MaterialApp(
+      home: CardList(
+        fetchCardData: fetchMonsters,
+        cardListWidget: (dynamic futureData, String filterText) {
+          // futureData es ahora dynamic
+          return MonsterList(
+            loadMonsters: () async => futureData,
+            filterText: filterText,
+          );
+        },
+      ),
     );
   }
 }

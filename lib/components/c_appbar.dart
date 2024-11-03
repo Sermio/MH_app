@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Cappbar extends StatelessWidget implements PreferredSizeWidget {
-  final GlobalKey<ScaffoldState> scaffoldKey;
+  // final GlobalKey<ScaffoldState> scaffoldKey;
 
-  const Cappbar({required this.scaffoldKey, Key? key}) : super(key: key);
+  const Cappbar(
+      {
+      // required this.scaffoldKey,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +20,6 @@ class Cappbar extends StatelessWidget implements PreferredSizeWidget {
         fit: BoxFit.cover,
       ),
       backgroundColor: Colors.transparent,
-      leading: IconButton(
-        icon: const Icon(
-          Icons.menu_outlined,
-          color: Colors.white,
-          size: 30,
-        ),
-        onPressed: () {
-          scaffoldKey.currentState?.openDrawer(); // Abre el Drawer
-        },
-      ),
     );
   }
 
