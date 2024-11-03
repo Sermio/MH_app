@@ -61,6 +61,11 @@ class _CdrawerState extends State<Cdrawer> {
             children: [
               ListTile(
                 title: const Text('Sample'),
+                // iconColor: Colors.orange,
+                trailing: const Icon(
+                  Icons.block,
+                  size: 35,
+                ),
                 onTap: () {
                   Navigator.pushReplacement(
                     context,
@@ -71,6 +76,11 @@ class _CdrawerState extends State<Cdrawer> {
               ),
               ListTile(
                 title: const Text('Monsters'),
+                trailing: Image.asset(
+                  'assets/images/drawer/monster_icon.png',
+                  width: 35,
+                  height: 35,
+                ),
                 onTap: () {
                   Navigator.pushReplacement(
                     context,
@@ -90,6 +100,11 @@ class _CdrawerState extends State<Cdrawer> {
               ),
               ListTile(
                 title: const Text('Decorations'),
+                trailing: Image.asset(
+                  'assets/images/decorations/gem_level_4.png',
+                  width: 35,
+                  height: 35,
+                ),
                 onTap: () {
                   Navigator.pushReplacement(
                     context,

@@ -62,10 +62,17 @@ class MonsterDetailsCard extends StatelessWidget {
                     runSpacing: 4.0,
                     children: monster.location.map((loc) {
                       return Cchip(
-                          // item: monster,
-                          chipItem: loc,
-                          itemName: loc.name ?? "",
-                          getItemColor: zoneBackgroundColor);
+                        // item: monster,
+                        chipItem: loc,
+                        itemName: loc.name ?? "",
+                        getItemColor: zoneBackgroundColor,
+                        optionalWidget: Image.asset(
+                          'assets/images/map/map.png',
+                          width: 20,
+                          height: 20,
+                          color: const Color.fromARGB(255, 120, 115, 115),
+                        ),
+                      );
                     }).toList(),
                   ),
                 ],

@@ -9,11 +9,15 @@ class SampleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "text",
-        style: TextStyle(fontSize: 24.0),
-        textAlign: TextAlign.center,
+    return Scaffold(
+      appBar: AppBar(),
+      drawer: const Cdrawer(),
+      body: const Center(
+        child: Text(
+          "text",
+          style: TextStyle(fontSize: 24.0),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }

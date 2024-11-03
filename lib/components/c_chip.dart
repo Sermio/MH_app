@@ -7,6 +7,7 @@ class Cchip<T> extends StatelessWidget {
   final T chipItem;
   final String itemName;
   final Color Function(String) getItemColor;
+  final Widget? optionalWidget;
 
   const Cchip({
     Key? key,
@@ -14,6 +15,7 @@ class Cchip<T> extends StatelessWidget {
     required this.chipItem,
     required this.itemName,
     required this.getItemColor,
+    this.optionalWidget,
   }) : super(key: key);
 
   @override
@@ -32,9 +34,18 @@ class Cchip<T> extends StatelessWidget {
         elevation: 5,
         shadowColor: Colors.black,
         backgroundColor: getItemColor(itemName),
-        label: Text(
-          itemName.isNotEmpty ? itemName : "Unknown",
-          style: const TextStyle(color: Colors.white),
+        label: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              itemName.isNotEmpty ? itemName : "Unknown",
+              style: const TextStyle(color: Colors.white),
+            ),
+            if (optionalWidget != null) ...[
+              const SizedBox(width: 8),
+              optionalWidget!,
+            ],
+          ],
         ),
       ),
     );
