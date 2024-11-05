@@ -11,7 +11,7 @@
   <li><strong>Monster Visualization</strong>: Users can browse a list of monsters, view their abilities and details, including images and descriptions.</li>
   <li><strong>Decoration Details</strong>: The app allows users to explore different decorations and their associated abilities.</li>
   <li><strong>Filtering System</strong>: Users can filter the list of monsters and decorations using a search field for more efficient navigation.</li>
-  <li><strong>Interactive Maps</strong>: Maps of different areas in the game are included, where users can see information about specific zones and available camps.</li>
+  <li><strong>Interactive Map's images</strong>: Images of different map areas in the game are included, where users can see information about specific zones and available camps.</li>
   <li><strong>Asynchronous Loading</strong>: The app uses <code>FutureBuilder</code> to load data asynchronously, displaying a loading indicator while data is being fetched.</li>
 </ul>
 
@@ -19,7 +19,7 @@
 <ul>
   <li><strong>Flutter</strong>: For developing the user interface.</li>
   <li><strong>Dart</strong>: Programming language used in the application.</li>
-  <li><strong>Provider</strong>: For state management and component modularization.</li>
+<!--   <li><strong>Provider</strong>: For state management and component modularization.</li> -->
   <li><strong>API</strong>: Custom APIs are utilized to fetch information about monsters and decorations.</li>
 </ul>
 
