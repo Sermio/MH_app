@@ -31,6 +31,7 @@ class Cchip<T> extends StatelessWidget {
         );
       },
       child: Chip(
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         elevation: 5,
         shadowColor: Colors.black,
         backgroundColor: getItemColor(itemName),
@@ -39,10 +40,10 @@ class Cchip<T> extends StatelessWidget {
           children: [
             Text(
               itemName.isNotEmpty ? itemName : "Unknown",
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white, fontSize: 12),
             ),
             if (optionalWidget != null) ...[
-              const SizedBox(width: 8),
+              const SizedBox(width: 6),
               optionalWidget!,
             ],
           ],

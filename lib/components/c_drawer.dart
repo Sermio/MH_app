@@ -101,7 +101,7 @@ class _CdrawerState extends State<Cdrawer> {
               ListTile(
                 title: const Text('Decorations'),
                 trailing: Image.asset(
-                  'assets/images/decorations/gem_level_4.png',
+                  'assets/images/drawer/jewel.png',
                   width: 35,
                   height: 35,
                 ),

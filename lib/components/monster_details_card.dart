@@ -59,7 +59,7 @@ class MonsterDetailsCard extends StatelessWidget {
                   const SizedBox(height: 15),
                   Wrap(
                     spacing: 8.0,
-                    runSpacing: 4.0,
+                    runSpacing: 2.0,
                     children: monster.location.map((loc) {
                       return Cchip(
                         // item: monster,
@@ -68,8 +68,8 @@ class MonsterDetailsCard extends StatelessWidget {
                         getItemColor: zoneBackgroundColor,
                         optionalWidget: Image.asset(
                           'assets/images/map/map.png',
-                          width: 20,
-                          height: 20,
+                          width: 16,
+                          height: 16,
                           color: const Color.fromARGB(255, 120, 115, 115),
                         ),
                       );
