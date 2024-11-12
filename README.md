@@ -44,19 +44,24 @@
   If you wish to contribute to the application, please fork the repository and submit a pull request with your changes.
 </p>
 
+<h2>App images</h2>
+<p>
+  Here are some images of the application screens with some oof the functionalities.
+</p>
 
+Monsters list, monster details and map details screens:
 <div style="display: flex; justify-content: space-around;">
   <img src="https://github.com/user-attachments/assets/b0a79e69-9722-458a-9f32-237b9f923415" alt="Registro 1" width="200" hspace="30"/>
   <img src="https://github.com/user-attachments/assets/05292731-2499-48f6-a499-f93260fad9ac" alt="Registro 2" width="200" hspace="30"/>
   <img src="https://github.com/user-attachments/assets/f7a5ccd6-44d7-4054-9a9d-93ee3dd80492" alt="Registro 2" width="200" hspace="30"/>
 </div>
-Monsters list, monster details and map details screens.
 
+Navigation drawer, decorations list and decoration details:
 <div style="display: flex; justify-content: space-around;">
   <img src="https://github.com/user-attachments/assets/476af36d-3edf-41e0-8b2c-4e85a76339f2" alt="Registro 1" width="200" hspace="30"/>
   <img src="https://github.com/user-attachments/assets/9a1ba10a-dfcb-4d1e-8e12-da7688e7685d" alt="Registro 2" width="200" hspace="30"/>
   <img src="https://github.com/user-attachments/assets/cb5f5cd1-2fd7-49b1-a9b7-40e8caa5afea" alt="Registro 2" width="200" hspace="30"/>
 </div>
-Navigation drawer, decorations list and decoration details.
+
 
 
