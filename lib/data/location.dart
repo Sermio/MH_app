@@ -11,7 +11,6 @@ class Location {
     required this.camps,
   });
 
-  // Método para deserializar un objeto JSON a una instancia de la clase Location
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
       id: json['id'] as int,
@@ -23,7 +22,6 @@ class Location {
     );
   }
 
-  // Método para serializar una instancia de la clase Location a un objeto JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -45,7 +43,6 @@ class Camp {
     required this.name,
   });
 
-  // Método para deserializar un objeto JSON a una instancia de la clase Camp
   factory Camp.fromJson(Map<String, dynamic> json) {
     return Camp(
       id: json['id'] as int,
@@ -54,7 +51,6 @@ class Camp {
     );
   }
 
-  // Método para serializar una instancia de la clase Camp a un objeto JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,

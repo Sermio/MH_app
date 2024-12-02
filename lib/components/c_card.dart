@@ -6,9 +6,9 @@ import 'package:mh_app/screens/decoration_details_screen.dart';
 
 // ignore: must_be_immutable
 class Ccard extends StatelessWidget {
-  final dynamic cardData; // Cambiado a dynamic
+  final dynamic cardData;
   final String cardTitle;
-  final Widget? cardBody; // Cambiado a Widget?
+  final Widget? cardBody;
   String? cardSubtitle1 = "Subtitle1";
   String? cardSubtitle2 = "Subtitle2";
   String? cardSubtitle1Label = "cardSubtitle1Label";
@@ -19,9 +19,9 @@ class Ccard extends StatelessWidget {
 
   Ccard({
     Key? key,
-    required this.cardData, // Usar cardData
+    required this.cardData,
     required this.cardTitle,
-    this.cardBody, // Hacer que sea opcional
+    this.cardBody,
     this.cardSubtitle1,
     this.cardSubtitle2,
     this.cardSubtitle1Label,
@@ -35,16 +35,13 @@ class Ccard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Verificar el tipo de cardData y redirigir a la pantalla correspondiente
         if (cardData is Monster) {
-          // Redirigir a la pantalla de detalles del monstruo
           Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => MonsterDetails(monster: cardData)),
           );
         } else if (cardData is ItemDecoration) {
-          // Redirigir a la pantalla de detalles de la decoración
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -76,10 +73,9 @@ class Ccard extends StatelessWidget {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Verificar si cardBody no es null
                 if (cardBody != null) ...[
-                  cardBody!, // Usar el operador de null-assertion para forzar el uso
-                  const SizedBox(height: 5), // Espacio si hay descripción
+                  cardBody!,
+                  const SizedBox(height: 5),
                 ],
                 Row(
                   children: [

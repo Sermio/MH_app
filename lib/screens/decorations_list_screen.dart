@@ -5,8 +5,7 @@ import 'package:mh_app/api/get_items_images.dart';
 import 'package:mh_app/components/url_image_loader.dart';
 
 class DecorationList extends StatelessWidget {
-  final Future<List<ItemDecoration>> Function()
-      loadDecorations; // Asegúrate de que esto sea Future<List<Decoration>>
+  final Future<List<ItemDecoration>> Function() loadDecorations;
   final String filterText;
 
   const DecorationList({
@@ -61,8 +60,8 @@ class DecorationList extends StatelessWidget {
                 cardSubtitle2Label: "Slot: ",
                 leading: _decorationLeading(decoration.skills),
                 trailing: SizedBox(
-                  width: 25, // Ajusta el ancho según lo necesites
-                  height: 25, // Ajusta la altura según lo necesites
+                  width: 25,
+                  height: 25,
                   // child: Image.network(
                   //   getDecorationSlotImage(decoration.slot),
                   //   fit: BoxFit.cover, // Ajusta cómo se debe escalar la imagen
@@ -70,12 +69,8 @@ class DecorationList extends StatelessWidget {
                   child: Image.asset(
                     'assets/images/decorations/gem_level_${decoration.slot}.png',
                     fit: BoxFit.contain,
-                    width: MediaQuery.of(context)
-                        .size
-                        .width, // Ancho de la pantalla
-                    height: MediaQuery.of(context)
-                        .size
-                        .height, // Alto de la pantalla
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
                   ),
                 ),
                 // cardTitleColor: getColorForProperty(decorations.name),

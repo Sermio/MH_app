@@ -16,9 +16,8 @@ class Cdrawer extends StatefulWidget {
 }
 
 class _CdrawerState extends State<Cdrawer> {
-  Future<List<Monster>>? _monsterData; // Almacenaremos la llamada aquí
-  Future<List<ItemDecoration>>?
-      _decorationData; // Almacenaremos la llamada aquí
+  Future<List<Monster>>? _monsterData;
+  Future<List<ItemDecoration>>? _decorationData;
 
   Future<List<Monster>> fetchMonsters() async {
     _monsterData ??= GetMonstersList.fetchMonsters();
@@ -47,7 +46,7 @@ class _CdrawerState extends State<Cdrawer> {
   Widget menuHeader(BuildContext context) {
     return Image.network(
       'https://imgs.search.brave.com/zzQeygerqDO1dyV2rLzBDdAwpOrplEXSqDFS0F3Taz0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5hcGkucGxheXN0/YXRpb24uY29tL3Z1/bGNhbi9pbWcvcm5k/LzIwMjAxMC8wMTA2/L0l5WTNKU3pITkNW/b2g3RnVsdE1QYUU4/Ri5qcGc',
-      fit: BoxFit.cover, // Ajusta la imagen al tamaño del contenedor
+      fit: BoxFit.cover,
     );
   }
 

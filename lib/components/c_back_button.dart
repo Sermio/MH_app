@@ -6,15 +6,15 @@ class CbackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 0, // Espacio desde la parte inferior
-      left: 20, // Espacio desde la izquierda
-      right: 20, // Espacio desde la derecha
+      bottom: 0,
+      left: 20,
+      right: 20,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
         child: Center(
           child: ElevatedButton(
             onPressed: () {
-              Navigator.pop(context); // Regresa a la pantalla anterior
+              Navigator.pop(context);
             },
             child: const Text('Go Back'),
           ),

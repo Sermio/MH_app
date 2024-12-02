@@ -40,7 +40,7 @@ class MonsterDetails extends StatelessWidget {
                       IconsList(elementWeakness, ailmentsWeakness),
                     ],
                   ),
-                  const SizedBox(height: 120), // Espacio para el botón
+                  const SizedBox(height: 120),
                 ],
               ),
             ),

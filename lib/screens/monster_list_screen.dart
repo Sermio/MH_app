@@ -3,8 +3,7 @@ import 'package:mh_app/data/monster.dart';
 import 'package:mh_app/components/c_card.dart';
 
 class MonsterList extends StatelessWidget {
-  final Future<List<Monster>> Function()
-      loadMonsters; // Asegúrate de que esto sea Future<List<Monster>>
+  final Future<List<Monster>> Function() loadMonsters;
   final String filterText;
 
   const MonsterList({
@@ -65,12 +64,10 @@ class MonsterList extends StatelessWidget {
 
   Text _cardDescription(String description) {
     return Text(
-      description, // Asegúrate de que sea un String
-      maxLines: 2, // Puedes ajustar este número según lo necesites
-      overflow: TextOverflow
-          .ellipsis, // Agrega '...' al final si el texto es muy largo
-      style:
-          const TextStyle(fontSize: 14), // Ajusta el estilo según lo necesites
+      description,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+      style: const TextStyle(fontSize: 14),
     );
   }
 }

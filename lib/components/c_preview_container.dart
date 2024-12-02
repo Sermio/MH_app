@@ -23,7 +23,7 @@ class CcontainerPreview extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(16),
             constraints: const BoxConstraints(
-              maxWidth: 300, // Limita el ancho máximo
+              maxWidth: 300,
             ),
             decoration: BoxDecoration(
               color: Colors.white,

@@ -30,9 +30,9 @@ class ItemDecoration {
 class Skill {
   final int id;
   final int level;
-  final Map<String, dynamic> modifiers; // Modificadores como un mapa dinámico
+  final Map<String, dynamic> modifiers;
   final String description;
-  final int skillId; // Cambiado de 'skill' a 'skillId' para evitar conflictos
+  final int skillId;
   final String skillName;
 
   Skill({

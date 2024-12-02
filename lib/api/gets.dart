@@ -48,8 +48,8 @@ class GetDecorationsList {
     });
 
     if (response.statusCode == 200) {
-      final data = json.decode(response.body); // Decodificar directamente
-      return SpecificSkill.fromJson(data); // Crear y devolver un objeto Skill
+      final data = json.decode(response.body);
+      return SpecificSkill.fromJson(data);
     } else {
       throw Exception('Failed to load Decoration Skill Details');
     }
@@ -58,7 +58,6 @@ class GetDecorationsList {
 
 class GetLocationDetails {
   static Future<Location> fetchLocationDetails(int locationId) async {
-    // Eliminar la verificación de null ya que locationId es un int no null
     final url = Uri.parse('https://mhw-db.com/locations/$locationId');
 
     final response = await http.get(url, headers: {
@@ -66,9 +65,8 @@ class GetLocationDetails {
     });
 
     if (response.statusCode == 200) {
-      // Aquí se espera que la respuesta sea un objeto JSON y no una lista
-      final data = json.decode(response.body); // Decodificar directamente
-      return Location.fromJson(data); // Crear y devolver un objeto Location
+      final data = json.decode(response.body);
+      return Location.fromJson(data);
     } else {
       throw Exception('Failed to load Location Details');
     }

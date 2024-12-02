@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mh_app/data/monster.dart';
 
-// Función para obtener debilidades elementales
 List<Weakness> getElementWeakness(List<Weakness> weaknesses) {
   const List<String> elementTypes = [
     'fire',
@@ -15,7 +14,6 @@ List<Weakness> getElementWeakness(List<Weakness> weaknesses) {
       .toList();
 }
 
-// Función para obtener debilidades por enfermedades
 List<Weakness> getAilmentsWeakness(List<Weakness> weaknesses) {
   const List<String> elementTypes = [
     'fire',
@@ -29,7 +27,6 @@ List<Weakness> getAilmentsWeakness(List<Weakness> weaknesses) {
       .toList();
 }
 
-// Función para obtener el color de fondo de la zona
 Color zoneBackgroundColor(String zone) {
   switch (zone) {
     case 'Ancient Forest':
@@ -47,7 +44,7 @@ Color zoneBackgroundColor(String zone) {
     case "Confluence of Fates":
       return Colors.cyan.shade100;
     default:
-      return Colors.white; // Color por defecto
+      return Colors.white;
   }
 }
 
@@ -63,24 +60,24 @@ IconData? getIconForElement(String element) {
   } else if (element.contains('dragon')) {
     return Icons.local_pizza;
   } else {
-    return null; // Ícono por defecto
+    return null;
   }
 }
 
 Color? getColorForProperty(String element) {
   element = element.toLowerCase();
   if (element.contains('fire')) {
-    return Colors.red; // Color para fuego
+    return Colors.red;
   } else if (element.contains('water')) {
-    return Colors.blue; // Color para agua
+    return Colors.blue;
   } else if (element.contains('thunder')) {
-    return Colors.yellow; // Color para trueno
+    return Colors.yellow;
   } else if (element.contains('ice')) {
-    return Colors.lightBlue; // Color para hielo
+    return Colors.lightBlue;
   } else if (element.contains('dragon')) {
-    return Colors.purple; // Color para dragón
+    return Colors.purple;
   } else {
-    return null; // Color por defecto (puedes elegir uno si lo prefieres)
+    return null;
   }
 }
 
@@ -97,19 +94,19 @@ IconData? getIconForAilment(String ailment) {
     case 'stun':
       return Icons.airline_seat_legroom_extra_sharp;
     default:
-      return null; // Ícono por defecto
+      return null;
   }
 }
 
 Color getColorForStars(int stars) {
   if (stars == 1) {
-    return Colors.blue; // Color para 1 estrella
+    return Colors.blue;
   } else if (stars == 2) {
-    return Colors.orange; // Color para 2 estrellas
+    return Colors.orange;
   } else if (stars >= 3) {
-    return Colors.red; // Color para 3 estrellas o más
+    return Colors.red;
   } else {
-    return Colors.grey; // Color por defecto si no hay coincidencias
+    return Colors.grey;
   }
 }
 

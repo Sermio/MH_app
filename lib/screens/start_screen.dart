@@ -18,7 +18,6 @@ class StartScreen extends StatelessWidget {
       home: CardList(
         fetchCardData: fetchMonsters,
         cardListWidget: (dynamic futureData, String filterText) {
-          // futureData es ahora dynamic
           return MonsterList(
             loadMonsters: () async => futureData,
             filterText: filterText,

@@ -51,8 +51,7 @@ class IconsList extends StatelessWidget {
               );
             }).toList(),
           ),
-          const SizedBox(
-              height: 10), // Espacio antes de los Ailments Weaknesses
+          const SizedBox(height: 10),
         ],
         if (hasAilmentWithMoreThanOneStar) ...[
           const Text(

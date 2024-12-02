@@ -18,23 +18,18 @@ class MonsterMapDetails<T> extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => Dialog(
-        backgroundColor:
-            Colors.transparent, // Elimina el fondo blanco del dialog
-        insetPadding:
-            const EdgeInsets.all(10), // Reduce los márgenes del diálogo
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.all(10),
         child: GestureDetector(
-          onTap: () =>
-              Navigator.of(context).pop(), // Cierra la imagen al tocar fuera
+          onTap: () => Navigator.of(context).pop(),
           child: Center(
             child: InteractiveViewer(
               maxScale: double.infinity,
               child: Image.asset(
                 imagePath,
                 fit: BoxFit.contain,
-                width:
-                    MediaQuery.of(context).size.width, // Ancho de la pantalla
-                height:
-                    MediaQuery.of(context).size.height, // Alto de la pantalla
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
               ),
             ),
           ),
@@ -75,7 +70,6 @@ class MonsterMapDetails<T> extends StatelessWidget {
                       final String imageFolder =
                           (map.name ?? "").replaceAll(' ', '-');
 
-                      // Definiendo las imágenes de forma dinámica
                       List<String> imageFiles = [];
                       for (int i = 1;
                           i <= countLocationImages(map.name ?? "");
@@ -89,9 +83,8 @@ class MonsterMapDetails<T> extends StatelessWidget {
                         children: [
                           Column(
                             children: imageFiles.asMap().entries.map((entry) {
-                              int index = entry.key; // Índice de la iteración
-                              String image =
-                                  entry.value; // Valor actual (la imagen)
+                              int index = entry.key;
+                              String image = entry.value;
 
                               return Padding(
                                 padding:
@@ -137,7 +130,6 @@ class MonsterMapDetails<T> extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          // Mostrar lista de camps
                           if (location.camps.isNotEmpty)
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -173,9 +165,7 @@ class MonsterMapDetails<T> extends StatelessWidget {
                                 style: TextStyle(fontSize: 16),
                               ),
                             ),
-                          const SizedBox(
-                              height:
-                                  100), // Espacio para asegurar que el texto no sea cubierto
+                          const SizedBox(height: 100),
                         ],
                       );
                     },
@@ -184,7 +174,7 @@ class MonsterMapDetails<T> extends StatelessWidget {
               ),
             ),
           ),
-          const CbackButton(), // Puedes ajustar la posición y el padding según sea necesario
+          const CbackButton(),
         ],
       ),
     );

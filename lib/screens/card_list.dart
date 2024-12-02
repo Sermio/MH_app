@@ -4,8 +4,7 @@ import 'package:mh_app/components/c_appbar.dart';
 import 'package:mh_app/components/c_card_filter.dart';
 
 class CardList extends StatefulWidget {
-  final Future<List<dynamic>> Function()
-      fetchCardData; // Cambia a List<Monster>
+  final Future<List<dynamic>> Function() fetchCardData;
   final Widget Function(Future<List<dynamic>> futureData, String filterText)
       cardListWidget;
 
