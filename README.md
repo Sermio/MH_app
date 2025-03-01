@@ -46,7 +46,7 @@
 
 <h2>App images</h2>
 <p>
-  Here are some images of the application screens with some oof the functionalities.
+  Here are some images of the application screens with some of the functionalities.
 </p>
 
 Monsters list, monster details and map details screens:
